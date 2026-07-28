@@ -1,0 +1,75 @@
+import displayio as dio
+import adafruit_displayio_sh1106, board, busio, os
+import Cadena2Imagen as im
+from time import monotonic as t_act
+
+dio.release_displays()
+
+ancho, alto = 130, 64
+display = adafruit_displayio_sh1106.SH1106(dio.I2CDisplay(busio.I2C(board.GP5, board.GP4), device_address=0x3C), width=ancho, height=alto)
+
+paleta = dio.Palette(2)
+paleta[0] = 0
+paleta[1] = 0xFFFFFF
+
+marco = dio.Group()
+display.root_group = marco
+marco.x = 2
+marco.y = 0
+
+os.chdir("/imagenes")
+
+receptores = im.btm("receptores.txt")
+onOff = im.btm("onOff.txt")
+playPau = im.btm("playPau.txt")
+prev = im.btm("prev.txt")
+sig = im.btm("sig.txt")
+altavoz = im.btm("altavoz.txt")
+# camb = im.btm("camb.txt")
+
+
+g_rec = dio.TileGrid(receptores.mapa, pixel_shader=paleta, width=1, height=1, tile_width=30, tile_height=46)
+g_onOff = dio.TileGrid(onOff.mapa, pixel_shader=paleta)
+g_playPau = dio.TileGrid(playPau.mapa, pixel_shader=paleta)
+g_prev = dio.TileGrid(prev.mapa, pixel_shader=paleta)
+g_sig = dio.TileGrid(sig.mapa, pixel_shader=paleta)
+# g_camb = dio.TileGrid(camb.mapa, pixel_shader=paleta)
+g_altavoz = dio.TileGrid(altavoz.mapa, pixel_shader=paleta, width=1, height=1, tile_width=19, tile_height=17)
+
+marco.append(g_rec)
+marco.append(g_onOff)
+marco.append(g_playPau)
+marco.append(g_prev)
+marco.append(g_sig)
+marco.append(g_altavoz)
+# marco.append(g_disp)
+    
+g_rec.x, g_rec.y = 11, 9
+g_onOff.x, g_onOff.y = 99, 11
+g_playPau.x, g_playPau.y = 72, 40
+g_prev.x, g_prev.y = 49, 40
+g_sig.x, g_sig.y, = 98, 40
+g_altavoz.x, g_altavoz.y, = 75, 12
+# g_disp
+
+t_encen = 0
+def apaga():	#Que se apague x tiempo usando una variable global y monotonic
+    global t_encen
+    if t_act() > t_encen + 1:
+        g_onOff.hidden = True
+        g_playPau.hidden = True
+        g_prev.hidden = True
+        g_sig.hidden = True
+        g_altavoz.hidden = True
+    #     g_disp.hidden = True
+    
+def ilumina(mensaje):
+    global t_encen
+    t_encen = t_act()
+    dicc = {"ant":g_prev,
+            "sig":g_sig,
+            "playPau":g_playPau,
+#             "disp":g_disp,
+            "altavoz":g_altavoz,
+            }
+    dicc.get(mensaje).hidden = False

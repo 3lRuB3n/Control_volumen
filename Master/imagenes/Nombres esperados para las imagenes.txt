@@ -1,0 +1,13 @@
+camb: cambio de receptor
+onOff: indicador de encendido/apagado del receptor
+playPau: Indicador de continuacion o pausa de la musica
+prev: Cancion anterior
+sig: cancion siguiente
+altavo: relacionado con el volumen (más volumen, menos volumen, silencio)
+receptores: Equipo que recibirá los comandos (Test, ordenador, ...)
+
+Para las dos imagenes compuestas hay que pegar los archivos ya convertidos a txt de cada icono individual uno arriba del otro en el txt
+
+sprt1
+sprt2
+sprt3
