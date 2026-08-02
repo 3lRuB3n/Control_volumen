@@ -1,0 +1,8 @@
+E(ESP) - R(Raspberry)
+
+inicio E, R
+espera coordinacion
+R envía las direcciones mac almacenadas a uno
+E configura los receptores uno a uno
+R espera a E
+R envía los comandos necesarios
