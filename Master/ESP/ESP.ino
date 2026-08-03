@@ -1,14 +1,13 @@
 #include <ESP8266WiFi.h>
 #include <espnow.h>
 
-#define println Serial.println      //habría que cambiar los println por print, o recortar los mensajes que mande en el receptor (La raspberrry pi pico, con circuitpython)
+#define println Serial.print      //habría que cambiar los println por print, o recortar los mensajes que mande en el receptor (La raspberrry pi pico, con circuitpython)
 
 unsigned char dir[20*6]; //20 direcciones máximas (cosas de esp_now) y 6 bytes (ordenados así por cosas de las ip)
 
 void setup(){
   Serial.begin(115200);
   WiFi.mode(WIFI_STA);
-  println("on");
   if (esp_now_init() != 0) return; 
   println("ok");
 
@@ -37,7 +36,7 @@ void addPeers(){
       dir[j*6+i/2] = char2hex(dir_char[i])*16 + char2hex(dir_char[i+1]);
     }
    }
-  println("anhadidos");
+  println("okk");
 }
 
 String leer(){ //leer el puerto serie comprimido a una sola funcion. Puede que sobre el delay o que sea excesivo (seguramente)
