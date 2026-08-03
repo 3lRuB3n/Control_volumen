@@ -20,10 +20,15 @@ def envia_audio(dif, recep):
         recep.envia(codigo)
 
 class recep:
-    def __init__(self, Dir):
+    def __init__(self, Dir, MAC):
         self.dir = Dir
         if Dir == "USB":
             self.envia = envia_hid
-            
         elif Dir == "test":
             self.envia = print
+        elif Dir == "wled":
+            self.envia = envia_wled
+            self.mac = MAC
+        elif Dir == "ESPNow":
+            self.envia = esp.envia_espnow
+            self.mac = MAC
