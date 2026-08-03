@@ -20,8 +20,9 @@ def envia_audio(dif, recep):
         recep.envia(codigo)
 
 class recep:
-    def __init__(self, Dir, MAC):
+    def __init__(self, Dir, MAC, img):
         self.dir = Dir
+        self.img = img #posicion del sprite del receptor en el spritsheet
         if Dir == "USB":
             self.envia = envia_hid
         elif Dir == "test":

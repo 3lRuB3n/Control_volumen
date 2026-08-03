@@ -5,7 +5,7 @@ disp = 0
 ind = 0
 
 #aqui van los receptores con la direccion fisica y la mac
-disp = rec.recep("test", "0"), rec.recep("USB","0")
+disp = rec.recep("test", "0",0), rec.recep("USB","0",1)
 Ndisp = len(disp)
 
 esp.setup(disp)
@@ -20,7 +20,7 @@ while error == 0:
             CD.ilumina(i)
             if i == "disp":
                 ind = (ind+1)%Ndisp
-                CD.g_rec[0] = ind
+                CD.g_rec[0] = disp[ind].img #cambia la imagen del receptor a la del dispositivo de turno
             else:
                 disp[ind].envia(i)
     if rotacion != 0:
