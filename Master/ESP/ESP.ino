@@ -34,6 +34,7 @@ void addPeers(){
     String dir_char = leer(); //lee la siguiente dirección
     for(int i=0;i<11;i+=2){
       dir[j*6+i/2] = char2hex(dir_char[i])*16 + char2hex(dir_char[i+1]);
+      //esp_now_add_peer(direccion , ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
     }
    }
   println("okk");

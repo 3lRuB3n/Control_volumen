@@ -25,7 +25,7 @@ def setup(dispositivos):
     Nmacs = 0
     Macs = []
     for i in dispositivos:
-        if i.macs != "0"
+        if i.macs != Nan
             Macs.append(i.mac)
     uart.write('a'+len(Macs)) #del 0 al 20
     for m in Macs:
@@ -37,6 +37,6 @@ def setup(dispositivos):
     led.value = False
     
 def envia_espnow(comm):
-    mens = self.MAC
+    mens = self.letra
     mens.append(comm)
     uart.write(mens)

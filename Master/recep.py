@@ -1,6 +1,7 @@
 from usb_hid import devices as dev
 from adafruit_hid.consumer_control_code import ConsumerControlCode as CCC
 from adafruit_hid.consumer_control import ConsumerControl as CC
+import wled, esp
 cc = CC(dev)
 
 def envia_hid(st):
@@ -20,16 +21,16 @@ def envia_audio(dif, recep):
         recep.envia(codigo)
 
 class recep:
-    def __init__(self, Dir, MAC, img):
+    def __init__(self, Dir, MAC, img, letra):
         self.dir = Dir
         self.img = img #posicion del sprite del receptor en el spritsheet
+        self.mac = MAC
+        self.letra = letra
         if Dir == "USB":
             self.envia = envia_hid
         elif Dir == "test":
             self.envia = print
         elif Dir == "wled":
-            self.envia = envia_wled
-            self.mac = MAC
+            self.envia = wled.envia_wled
         elif Dir == "ESPNow":
             self.envia = esp.envia_espnow
-            self.mac = MAC

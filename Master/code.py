@@ -5,7 +5,7 @@ disp = 0
 ind = 0
 
 #aqui van los receptores con la direccion fisica y la mac
-disp = rec.recep("test", "0",0), rec.recep("USB","0",1)
+disp = rec.recep("test", "0",0, 'u'), rec.recep("USB","0",1,'u')
 Ndisp = len(disp)
 
 esp.setup(disp)
