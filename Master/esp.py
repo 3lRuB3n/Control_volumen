@@ -25,13 +25,13 @@ def setup(dispositivos):
     Nmacs = 0
     Macs = []
     for i in dispositivos:
-        if i.macs != Nan
+        if i.macs != "0"
             Macs.append(i.mac)
     uart.write('a'+len(Macs)) #del 0 al 20
     for m in Macs:
         uart.write(m) #va a dar problemas, deben ser bytes en vez de strings...
         sl(.01)
-    
+        
     while uart.read != "okk":
         pass
     led.value = False
