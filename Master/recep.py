@@ -21,7 +21,7 @@ def envia_audio(dif, recep):
         recep.envia(codigo)
 
 class recep:
-    def __init__(self, Dir, MAC, img, letra):
+    def __init__(self, Dir, MAC, img, letra): #Dir: Protocolo; MAC: dirección MAC, '0' si no corresponde; img: indice en la spritesheet; letra: posición en los dispositivos espnow, de la 'a' a la 't' segun se declaren
         self.dir = Dir
         self.img = img #posicion del sprite del receptor en el spritsheet
         self.mac = MAC
