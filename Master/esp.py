@@ -1,15 +1,25 @@
 import board, busio, digitalio as dio
 from time import sleep as sl
 
-led = dio.DigitalInOut(board.GP1)
+led = dio.DigitalInOut(board.LED)
 led.switch_to_output()
+                    #Rx, Tx
+uart = busio.UART(board.GP17, board.GP16, baudrate = 74880) #ya se verán los pines
 
-uart = busio.UART(board.TX, board.RX, baudrate = 115200) #ya se verán los pines
+def limpia(lec):
+    men = ''
+    print(lec)
+    if lec != None:
+        men = ''.join([chr(b) for b in lec])
+        return men
+
 
 print("esperando ESP")
 led.value = True
-while uart.read(2) != "ok":
-    pass
+lectura = ''
+while lectura != "ok":
+    lectura = limpia(uart.read(2))
+    sl(0.05)
 print("esp listo")
 led.value = False
 estado = 0
@@ -25,7 +35,7 @@ def setup(dispositivos):
     Nmacs = 0
     Macs = []
     for i in dispositivos:
-        if i.macs != "0"
+        if i.macs != "0":
             Macs.append(i.mac)
     uart.write('a'+len(Macs)) #del 0 al 20
     for m in Macs:
