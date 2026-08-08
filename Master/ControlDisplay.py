@@ -5,8 +5,8 @@ from time import monotonic as t_act
 
 dio.release_displays()
 
-ancho, alto = 130, 64
-display = adafruit_displayio_sh1106.SH1106(dio.I2CDisplay(busio.I2C(board.GP5, board.GP4), device_address=0x3C), width=ancho, height=alto)
+ancho, alto = 130, 64												##SCL, SDA
+display = adafruit_displayio_sh1106.SH1106(dio.I2CDisplay(busio.I2C(board.GP19, board.GP18), device_address=0x3C), width=ancho, height=alto)
 
 paleta = dio.Palette(2)
 paleta[0] = 0
@@ -61,7 +61,7 @@ def apaga():	#Que se apague x tiempo usando una variable global y monotonic
         g_prev.hidden = True
         g_sig.hidden = True
         g_altavoz.hidden = True
-    #     g_disp.hidden = True
+        g_disp.hidden = True
     
 def ilumina(mensaje):
     global t_encen
@@ -69,7 +69,7 @@ def ilumina(mensaje):
     dicc = {"ant":g_prev,
             "sig":g_sig,
             "playPau":g_playPau,
-#             "disp":g_disp,
+            "disp":g_disp,
             "altavoz":g_altavoz,
             }
     dicc.get(mensaje).hidden = False

@@ -1,7 +1,7 @@
 import board, digitalio as dio
 from rotaryio import IncrementalEncoder as IE
-
-encoder = [IE(board.GP18, board.GP19), 0] #encoder + posicion antigua
+                #?? lo mismo es al reves
+encoder = [IE(board.GP21, board.GP20), 0] #encoder + posicion antigua
 
 class flanco:
     def __init__(self, pin, mensaje):
@@ -15,27 +15,27 @@ class flanco:
         return res
 pines = []
 
-sil = flanco(dio.DigitalInOut(board.GP1),"sil")
+sil = flanco(dio.DigitalInOut(board.GP10),"sil")
 sil.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(sil)
 
-sig = flanco(dio.DigitalInOut(board.GP2),"sig")
+sig = flanco(dio.DigitalInOut(board.GP11),"sig")
 sig.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(sig)
 
-ant = flanco(dio.DigitalInOut(board.GP3),"ant")
+ant = flanco(dio.DigitalInOut(board.GP13),"ant")
 ant.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(ant)
 
-playPau = flanco(dio.DigitalInOut(board.GP13),"playPau")
+playPau = flanco(dio.DigitalInOut(board.GP12),"playPau")
 playPau.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(playPau)
 
-disp = flanco(dio.DigitalInOut(board.GP20),"disp")
+disp = flanco(dio.DigitalInOut(board.GP15),"disp") #14?
 disp.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(disp)
 
-onoff = flanco(dio.DigitalInOut(board.GP17),"onOff")
+onoff = flanco(dio.DigitalInOut(board.GP14),"onOff") #15?
 onoff.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(onoff)
 
