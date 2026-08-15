@@ -4,7 +4,7 @@ from time import sleep as sl
 led = dio.DigitalInOut(board.LED)
 led.switch_to_output()
                     #Rx, Tx
-uart = busio.UART(board.GP17, board.GP16, baudrate = 74880) #ya se verán los pines
+uart = busio.UART(board.GP16, board.GP17, baudrate = 74880) #lo mismo es al reves
 
 def limpia(lec):
     men = ''
@@ -17,9 +17,9 @@ def limpia(lec):
 print("esperando ESP")
 led.value = True
 lectura = ''
-while lectura != "ok":
+"""while lectura != "ok":
     lectura = limpia(uart.read(2))
-    sl(0.05)
+    sl(0.05)"""
 print("esp listo")
 led.value = False
 estado = 0
@@ -35,9 +35,9 @@ def setup(dispositivos):
     Nmacs = 0
     Macs = []
     for i in dispositivos:
-        if i.macs != "0":
+        if i.mac != "0":
             Macs.append(i.mac)
-    uart.write('a'+len(Macs)) #del 0 al 20
+    uart.write(chr(ord('a')+len(Macs))) #del 0 al 20
     for m in Macs:
         uart.write(m) #va a dar problemas, deben ser bytes en vez de strings...
         sl(.01)

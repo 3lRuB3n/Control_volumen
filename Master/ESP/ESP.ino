@@ -4,6 +4,8 @@
 #define debug Serial.println      //habría que cambiar los println por print, o recortar los mensajes que mande en el receptor (La raspberrry pi pico, con circuitpython)
 
 unsigned char dir[20*6]; //20 direcciones máximas (cosas de esp_now) y 6 bytes (ordenados así por cosas de las ip)
+char mensaje[32];
+bool estado = false;
 
 void setup(){
   Serial.begin(74880);
@@ -22,10 +24,15 @@ void loop(){
   debug("loop");
   String data = leer();
   unsigned char obj = letraA20(data[0]);
-  String mensaje = data.substring(1);
+  String mens_temp = data.substring(1);
+  mens_temp.toCharArray(mensaje, 32); //pasarlo como string lo jode por alguna razon
   
-  ////debug((dir+obj*6)[0]);
+  for(int i=0;i<6;i++){
+    debug((dir+obj*6)[i],HEX);
+  }
+  do{
   esp_now_send(dir+obj*6, (uint8_t *) &mensaje, sizeof(mensaje)); //mete esto en un do while, puede que lo de la dirección no le haga gracia a la funcion esta
+  }while(estado);
 }
 
 void addPeers(){
@@ -43,7 +50,7 @@ void addPeers(){
     for(int i=0;i<11;i+=2){
       dir[j*6+i/2] = char2hex(dir_char[i])*16 + char2hex(dir_char[i+1]);
       //esp_now_add_peer(direccion , ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
-      debug("for");
+      debug(dir[j*6+i/2], HEX);
     }
   }
   Serial.println("okk");
@@ -73,5 +80,10 @@ byte letraA20(char letra){
 }
 
 void onDataSent(byte *mac_addr, byte sendStatus){
-  //debug(sendStatus);
+  if(sendStatus){
+    debug("Malo");
+  }else{
+    debug("Bueno");
+  }
+  estado = sendStatus;
 }

@@ -25,15 +25,15 @@ playPau = im.btm("playPau.txt")
 prev = im.btm("prev.txt")
 sig = im.btm("sig.txt")
 altavoz = im.btm("altavoz.txt")
-# camb = im.btm("camb.txt")
+camb = im.btm("camb.txt")
 
 
-g_rec = dio.TileGrid(receptores.mapa, pixel_shader=paleta, width=1, height=1, tile_width=30, tile_height=46)
+g_rec = dio.TileGrid(receptores.mapa, pixel_shader=paleta, width=1, height=1, tile_width=32, tile_height=46)
 g_onOff = dio.TileGrid(onOff.mapa, pixel_shader=paleta)
 g_playPau = dio.TileGrid(playPau.mapa, pixel_shader=paleta)
 g_prev = dio.TileGrid(prev.mapa, pixel_shader=paleta)
 g_sig = dio.TileGrid(sig.mapa, pixel_shader=paleta)
-# g_camb = dio.TileGrid(camb.mapa, pixel_shader=paleta)
+g_disp = dio.TileGrid(camb.mapa, pixel_shader=paleta)
 g_altavoz = dio.TileGrid(altavoz.mapa, pixel_shader=paleta, width=1, height=1, tile_width=19, tile_height=17)
 
 marco.append(g_rec)
@@ -42,15 +42,15 @@ marco.append(g_playPau)
 marco.append(g_prev)
 marco.append(g_sig)
 marco.append(g_altavoz)
-# marco.append(g_disp)
+marco.append(g_disp)
     
-g_rec.x, g_rec.y = 11, 9
-g_onOff.x, g_onOff.y = 99, 11
+g_rec.x, g_rec.y = 1, 9
+g_onOff.x, g_onOff.y = 98, 11
 g_playPau.x, g_playPau.y = 72, 40
 g_prev.x, g_prev.y = 49, 40
 g_sig.x, g_sig.y, = 98, 40
-g_altavoz.x, g_altavoz.y, = 75, 12
-# g_disp
+g_altavoz.x, g_altavoz.y, = 73, 12
+g_disp.x, g_disp.y, = 49, 12
 
 t_encen = 0
 def apaga():	#Que se apague x tiempo usando una variable global y monotonic

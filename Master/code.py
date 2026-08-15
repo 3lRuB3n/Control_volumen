@@ -5,10 +5,10 @@ disp = 0
 ind = 0
 
 #aqui van los receptores con la direccion fisica y la mac
-disp = rec.recep("test", "0",0, 'u'), rec.recep("USB","0",1,'u'), rec.recep("ESPNow","AABBCCDDEEFF",0,'a')
+disp = rec.recep("test", "0",0, 'u'), rec.recep("USB","0",1,'u'), rec.recep("ESPNow","40915151EDA2",4,'a')
 Ndisp = len(disp)
-
-esp.setup(disp)
+CD.g_rec[0] = disp[ind].img
+#esp.setup(disp)
 
 while error == 0:
     sl(0.01)
