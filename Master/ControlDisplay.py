@@ -66,10 +66,13 @@ def apaga():	#Que se apague x tiempo usando una variable global y monotonic
 def ilumina(mensaje):
     global t_encen
     t_encen = t_act()
+    #print(mensaje)
     dicc = {"ant":g_prev,
             "sig":g_sig,
             "playPau":g_playPau,
             "disp":g_disp,
             "altavoz":g_altavoz,
+            "onOff": g_onOff,
+            "sil": g_altavoz
             }
     dicc.get(mensaje).hidden = False

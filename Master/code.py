@@ -5,7 +5,7 @@ disp = 0
 ind = 0
 
 #aqui van los receptores con la direccion fisica y la mac
-disp = rec.recep("test", "0",0, 'u'), rec.recep("USB","0",1,'u'), rec.recep("ESPNow","40915151EDA2",4,'a')
+disp = rec.recep("test", "0",0, 'u'), rec.recep("USB","0",1,'u')#, rec.recep("ESPNow","40915151EDA2",3,'a')
 Ndisp = len(disp)
 CD.g_rec[0] = disp[ind].img
 #esp.setup(disp)
@@ -17,6 +17,8 @@ while error == 0:
     CD.apaga()
     if pend:
         for i in comandos:
+            if i == "sil":
+                CD.g_altavoz[0] = 2
             CD.ilumina(i)
             if i == "disp":
                 ind = (ind+1)%Ndisp
@@ -24,7 +26,7 @@ while error == 0:
             else:
                 disp[ind].envia(i)
     if rotacion != 0:
+        CD.g_altavoz[0] = 0 if rotacion>0 else 1
         CD.ilumina("altavoz")
         rec.envia_audio(rotacion, disp[ind])
-        CD.g_altavoz[0] = 0 if rotacion>0 else 1
         CD.g_altavoz.hidden = False

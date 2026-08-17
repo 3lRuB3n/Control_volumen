@@ -15,7 +15,7 @@ class flanco:
         return res
 pines = []
 
-sil = flanco(dio.DigitalInOut(board.GP26),"sil")
+sil = flanco(dio.DigitalInOut(board.GP6),"sil")
 sil.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(sil)
 
@@ -31,11 +31,11 @@ playPau = flanco(dio.DigitalInOut(board.GP14),"playPau")
 playPau.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(playPau)
 
-disp = flanco(dio.DigitalInOut(board.GP3),"disp") #(?)
+disp = flanco(dio.DigitalInOut(board.GP5),"disp") #(?)
 disp.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(disp)
 
-onoff = flanco(dio.DigitalInOut(board.GP27),"onOff") #15?
+onoff = flanco(dio.DigitalInOut(board.GP28),"onOff") #15?
 onoff.pin.switch_to_input(pull=dio.Pull.DOWN)
 pines.append(onoff)
 
