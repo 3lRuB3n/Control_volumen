@@ -3,7 +3,7 @@ from rotaryio import IncrementalEncoder as IE
                 #?? lo mismo es al reves
 encoder = [IE(board.GP20, board.GP21), 0] #encoder + posicion antigua
 
-class flanco:
+class flanco: #Para gestionar los flancos
     def __init__(self, pin, mensaje):
         self.pin = pin
         self.ant = pin.value
